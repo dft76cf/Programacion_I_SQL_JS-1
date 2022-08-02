@@ -36,7 +36,7 @@ begin
 		select "n1 es mayor que n2";
 	elseif n2 > n1 then
 		select "n2 es mayor que n1";
-	else 
+	else
 		select "son iguales";
 	end if;
 end //
