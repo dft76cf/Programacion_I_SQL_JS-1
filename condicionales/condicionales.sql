@@ -11,6 +11,12 @@
 -- Para realizar un condicional como estructura,
 -- tenemos que crear un procedimiento
 use test;
+
+create table t(
+	numero int primary key
+);
+
+
 -- Calculo de la mayoria de edad
 drop procedure if exists mayor_edad;
 delimiter //
@@ -81,3 +87,58 @@ delimiter ;
 
 call mayor_dos_numeros(2,7, @resultado);
 select @resultado;
+
+-- Ejemplo de case 
+-- Semáforo
+drop procedure if exists semaforo;
+delimiter $$
+create procedure semaforo(in color varchar (5))
+begin
+	case color
+		when "rojo" then select "No puedes pasar";
+		when "ambar" then select "Precaución";
+		when "verde" then select "Puedes pasar";
+        -- El caso "else no es obligatorio
+        else select "color erróneo";
+	end case;
+end $$
+
+delimiter ;
+
+call semaforo("amarillo");
+
+
+drop procedure if exists semaforo;
+delimiter $$
+create procedure ejemplo_case(in dato boolean)
+begin
+-- Si en el parámetro recibimos un TRUE, añadimos 1 a la tabla t y si recibimos un FALSE, un 0
+	case dato
+		when true then insert into t values(1);
+		when false then insert into t values(0);
+		when "verde" then select "Puedes pasar";
+        else select "dato erróneo";
+	end case;
+end $$
+
+delimiter ;
+
+call ejemplo_case(true);
+select * from t;
+
+
+-- Ejercicio prefijo
+
+drop procedure if exists prefijo;
+delimiter $$
+create procedure prefijo(in telefono varchar (12))
+begin
+	case substr(telefono, 1, 3)
+		when "+34" then select "España";
+        else select "Prefijo erróneo";
+	end case;
+end $$
+
+delimiter ;
+
+call prefijo("+35123456789");
