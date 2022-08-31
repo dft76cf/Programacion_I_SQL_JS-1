@@ -142,3 +142,38 @@ end $$
 delimiter ;
 
 call prefijo("+35123456789");
+
+drop procedure if exists test_telefono;
+delimiter $$
+create procedure test_telefono(in num_tel varchar (12))
+begin
+	declare prefijo varchar(3);
+    set prefijo = substr(num_tel, 1, 3);
+	if prefijo = "+34"
+		then select "España";
+        else select "Prefijo erróneo";
+	end if;
+end $$
+
+delimiter ;
+
+call prefijo("+35123456789");
+
+-- finde
+
+drop procedure if exists test_finde;
+delimiter $$
+create procedure test_finde(in dia varchar (12))
+begin
+	case true
+    -- Forzamos la entreada al switch con true para añadir operadores de comparación
+		when dia = "Sábado" || dia = "Domingo" then select "Es fin de semana";
+        when dia = "Lunes" || dia = "Martes" || dia = "Miércoles" || dia = "Jueves" || dia = "Viernes" then select "Es entre semana";
+		else select "No es un día de la semana";
+	end case;
+end $$
+
+delimiter ;
+
+call test_finde("jjjk");
+
