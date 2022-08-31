@@ -42,11 +42,32 @@ if (n1 > n2) {
 }
 
 
+// Calculo de mayor de dos numeros 2
 
+var n1 = 3;
+var n2 = 4;
 
+if (n1 > n2) {
+    resultado = "n1 es mayor que n2";
+} else if(n2 > n1) {
+    resultado ="n2 es mayor que n1";
+} else {
+    resultado = "Los numeros son iguales";
+}
 
+console.log(resultado);
 
+// Función compara números
 
+function mayor_dos_numeros(n1, n2){
+    if(n1 > n2) {
+        console.log ("n1 es mayor que n2");
+    } else if(n2 > n1) {
+        console.log ("n2 es mayor que n1");
+        } else {console.log("Son iguales")}
+    
+}
 
+mayor_dos_numeros(3,4)
 
 
