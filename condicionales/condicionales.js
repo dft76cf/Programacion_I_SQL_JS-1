@@ -48,11 +48,11 @@ var n1 = 3;
 var n2 = 4;
 
 if (n1 > n2) {
-    resultado = "n1 es mayor que n2";
+    return n1 + " es mayor que " +  n2;
 } else if(n2 > n1) {
-    resultado ="n2 es mayor que n1";
+    return n2 + " es mayor que " +  n1;
 } else {
-    resultado = "Los numeros son iguales";
+    return "Los numeros son iguales";
 }
 
 console.log(resultado);
