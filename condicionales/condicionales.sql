@@ -45,3 +45,39 @@ delimiter ;
 
 call mayor_dos_numeros(15,7);
 
+-- Calculo de la mayoria de edad
+-- out implica un retorno, devuelve datos.
+drop procedure if exists mayor_edad;
+delimiter //
+create procedure mayor_edad(in edad int, out resultado varchar(20))
+begin
+	if edad < 18 then
+		set resultado = "Eres menor de edad";
+	else
+		set resultado = "Eres mayor de edad";
+	end if;
+end //
+
+delimiter ;
+
+call mayor_edad(12, @resultado);
+select @resultado;
+
+-- Compara dos números con out
+drop procedure if exists mayor_dos_numeros;
+delimiter //
+create procedure mayor_dos_numeros(in n1 int, in n2 int, out resultado varchar (20))
+begin
+	if n1 > n2 then
+		set resultado =  "n1 es mayor que n2";
+	elseif n2 > n1 then
+		set resultado = "n2 es mayor que n1";
+	else
+		set resultado = "son iguales";
+	end if;
+end //
+
+delimiter ;
+
+call mayor_dos_numeros(2,7, @resultado);
+select @resultado;
